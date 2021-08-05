@@ -41,3 +41,33 @@ const inventors = [
   const totalYears = inventors.reduce((total, inventor)=> {
       return total + (inventor.passed - inventor.year);
   }, 0);
+
+  const oldest = inventors.sort((a,b) => {
+      const lastGuy = a.passed - a.year;
+      const nextGuy = b.passed - b.year;
+
+      return lastGuy > nextGuy ? -1 : 1;
+  });
+
+  const category = document.querySelector('.root');
+  const links = Array.from(category.querySelectorAll('a'));
+
+
+  const de = links
+  .map(link => link.textContent)
+  .filter(streetName => streetName.includes('de'));
+
+
+  const alpha = people.sort((lastOne, nextOne) => {
+      const [last, first] = lastOne.split(', ');
+      const [bLast, bFirst] = nextOne.split(', ');
+      return last > bLast ? 1 : -1;
+  })
+
+  const peopleNumbers = people.reduce((obj, item) => {
+      if (!obj[item]) {
+          obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+  }, {})
